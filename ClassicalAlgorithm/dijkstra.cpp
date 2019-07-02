@@ -51,6 +51,10 @@ int dijkstra(int s, int e)
         }
 
         vis[x] = true;
+        if (vis[e])
+        {
+            break;
+        }
 
         for (int j = 1; j <= N; j++)
         {
