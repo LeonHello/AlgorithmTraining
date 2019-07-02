@@ -51,10 +51,10 @@ int dijkstra(int s, int e)
         }
 
         vis[x] = true;
-        if (vis[e])
-        {
-            break;
-        }
+        // if (vis[e])
+        // {
+        //     break;
+        // }
 
         for (int j = 1; j <= N; j++)
         {
@@ -64,12 +64,21 @@ int dijkstra(int s, int e)
             }
         }
     }
-    return dist[e];
+    // return dist[e];
+    int max = 0;
+    for (int i = 1; i <= N; i++)
+    {
+        if (!vis[i])
+            return -1;
+        if (dist[i] > max)
+            max = dist[i];
+    }
+    return max;
 }
 
 int main()
 {
     init();
-    cout << dijkstra(1, 4) << endl;
+    cout << dijkstra(2, 4) << endl;
     return 0;
 }
