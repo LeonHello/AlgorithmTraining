@@ -2,3 +2,5 @@
 .DS_Stroe
 
 .vscode
+a.out.dSYM
+a.out
