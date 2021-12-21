@@ -1,39 +1,36 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
 using namespace std;
-int oneQsort(int *a, int low, int high){
-    int temp = a[low];
-    int j = high;
-    int i = low;
-    while(i < j){
-        while(i < j && a[j] >= temp)
-            j--;
-        if(i < j){
-            a[i] = a[j];
-            // i++;
-        }
-        while(i < j && a[i] <= temp)
-            i++;
-        if(i < j){
-            a[j] = a[i];
-            // j--;
-        }
+
+void qSort(vector<int> &nums, int left, int right)
+{
+    if (left >= right)
+        return;
+    int tmp = nums[left];
+    int i = left, j = right;
+    while (i < j)
+    {
+        while (i < j && nums[j] > tmp)
+            --j;
+        if (i < j)
+            nums[i++] = nums[j];
+        while (i < j && nums[i] < tmp)
+            ++i;
+        if (i < j)
+            nums[j--] = nums[i];
     }
-    a[i] = temp;
-    return i;
-}
-void qSort(int *a, int low, int high){
-    if(low >= high) return;
-    int i = oneQsort(a, low, high);
-    qSort(a, low, i - 1);
-    qSort(a, i + 1, high);
+    nums[i] = tmp;
+
+    qSort(nums, left, i - 1);
+    qSort(nums, i + 1, right);
 }
 
-int main(){
-    int a[10] = {9,8,7,6,5,4,3,2,1,0};
-    qSort(a, 0, 9);
-    for(int i = 0; i < 10; i++){
-        cout<<a[i]<<" ";
-    }
-    cout<<endl;
+int main(int argc, char *argv[])
+{
+    vector<int> a = {10, 100, 2999, -1, 909, 3, 4, 5, 6};
+    qSort(a, 0, a.size() - 1);
+    for (auto i : a)
+        cout << i << " ";
+    cout << endl;
     return 0;
 }
